@@ -1,11 +1,10 @@
 function setIframeHeight() {
     var iframe = document.getElementById('stripeIframe');
     if (iframe) {
-        var screenHeight = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight || 600;
-        var targetHeight = screenHeight * 0.8; // Adjust the multiplier as needed
+        var body = iframe.contentDocument.body;
+        var html = iframe.contentDocument.documentElement;
 
-        // Ensure a minimum height
-        targetHeight = Math.max(targetHeight, 600); // Set a minimum height, adjust as needed
+        var targetHeight = Math.max(body.scrollHeight, body.offsetHeight, html.clientHeight, html.scrollHeight, html.offsetHeight);
 
         iframe.style.height = targetHeight + 'px';
     }
